@@ -47,7 +47,7 @@ namespace DungeonLibrary
             get { return _isTwoHanded; }
             set { _isTwoHanded = value; }
         }
-
+        public WeaponType Type { get; set; }
         //CTORS
         public Weapon(string name, int minDamage, int maxDamage, int bonusHitChance, bool isTwoHanded)
         {
@@ -55,7 +55,8 @@ namespace DungeonLibrary
             MaxDamage = maxDamage;//Max Damage MUST be ASSIGNED before MinDamage, regardless of how it appears in the parameter list.
             MinDamage = minDamage;
             BonusHitChance = bonusHitChance;
-            IsTwoHanded = isTwoHanded;
+            IsTwoHanded = isTwoHanded;//added after introducing enums
+            Type = Type;
         }//FQ CTOR
 
         //Methods

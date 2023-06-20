@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DungeonLibrary
+﻿namespace DungeonLibrary
 {
-    public enum Race
-    {dwarf, elf, tiefling, orc, 
-    
-    }
+
+    public enum UserRace
+    {   Elf,
+        Human,
+        Dwarf,
+        Tiefling,
+        Orc }
+
 }
+
+        
+
