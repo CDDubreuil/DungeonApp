@@ -41,6 +41,10 @@ namespace DungeonApp
             Console.WriteLine(w1.ToString());
             #endregion
 
+
+            //An inventory could be made possible through the use of polymorphism, 
+            //using enums
+          
         }
     }
 }

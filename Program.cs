@@ -1,7 +1,6 @@
 ﻿using DungeonLibrary;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
-
 namespace DungeonApp
 {
     internal class Program

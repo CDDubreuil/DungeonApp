@@ -2,13 +2,15 @@
 {
 
     public enum UserRace
-    {   Elf,
-        Human,
-        Dwarf,
-        Tiefling,
-        Orc }
-
+    {
+       Human,
+       Tiefling,
+       Dwarf, 
+       Giant, 
+       Orc,
+       Cyborg
+    }
 }
 
-        
+
 
