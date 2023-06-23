@@ -1,6 +1,9 @@
 ﻿namespace DungeonLibrary
 {
-    public class Character
+    public abstract class Character
+        //Abstract denotes the beginning of an inheritance chain.
+        //This is an incomplete implementation and must be inherited. You cannot
+        //create/instantiate an abstract object.
     {
         private string _name;
         private int _hitChance;
@@ -62,10 +65,17 @@
         }
 
         //In combat, the attacker's HitChance minus the defender's Block will determine whether the attack hits.        
-        public int CalcBlock() { return Block; }
-        public int CalcHitChance() { return HitChance; }
+        public virtual int CalcBlock() { return Block; }
+        public virtual int CalcHitChance() { return HitChance; }
         //If an attacker lands a hit, we will call the attacker's CalcDamage() to determine how much damage to do.
-        public int CalcDamage() { return 0; }
+        //Virtual makes it possible but not required to override
+
+        //an abstract method is an incomplete implementation. This method must be 
+        //overridden in a child class for the implementation to be complete.
+        //abstract methods can only exist in abstract classes. 
+        public abstract int CalcDamage();
+        //virtual : possible to override, but not required.
+        //abstract : required to be overridden.
 
         public override string ToString()
         {
