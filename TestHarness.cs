@@ -61,15 +61,6 @@ namespace DungeonApp
             #endregion
 
 
-            #region Monster Testing
-            Monster m1 = Monster.GetMonster();
-            Console.WriteLine(m1);
-            m1.Life += 10;
-            Console.WriteLine(m1);
-
-
-
-            #endregion
             //An inventory could be made possible through the use of polymorphism, 
             //using enums
             //csf2 solution, block 3 enums and block 3 monsters enum for example on how to
