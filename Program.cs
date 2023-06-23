@@ -15,7 +15,7 @@ namespace DungeonApp
 
             #region Player Creation
 
-    List<UserRace> races = Enum.GetValues(typeof(UserRace)).Cast<UserRace>().ToList();
+    List<Race> races = Enum.GetValues(typeof(Race)).Cast<Race>().ToList();
             Console.WriteLine(races);
 
             Console.WriteLine("Let's Choose a race for your character.");
