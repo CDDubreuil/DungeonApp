@@ -9,15 +9,15 @@ namespace DungeonApp
         {
             #region Introduction
             //TODO Intro
-            Console.WriteLine("Hello Adventurer! Welcome to the Dungeon of Doom!");
+            Console.WriteLine("Dungeon Defender");
             #endregion
 
             #region Player Creation
             //Player Creation, after we've learned how to create custom Datatypes.
             //Reference the notes in the TestHarness for some ideas of how to expand player creation.
 
-    List<UserRace> races = Enum.GetValues(typeof(UserRace)).Cast<UserRace>().ToList();
-            Console.WriteLine(races);
+            //Potential expansion - Let the user choose from a list of pre-made weapons.
+            Weapon sword = new("Lightsaber", 1, 8, 10, true, WeaponType.Sword);
 
             //Potential Expansion - Let the user choose their name and Race
             Player player = new("Leeroy Jenkins", Race.Human, sword);

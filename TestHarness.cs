@@ -39,7 +39,7 @@ namespace DungeonApp
 
             #region Weapon Testing
             Console.Write("Equipped Weapon: ");
-            Weapon w1 = new Weapon("Wooden Stick", 1, 5, 0, false);
+            Weapon w1 = new Weapon("Wooden Stick", 1, 5, 0, false, WeaponType.Sword);
             Console.WriteLine(w1.ToString());
             #endregion
 

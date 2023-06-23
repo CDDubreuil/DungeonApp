@@ -12,6 +12,10 @@ namespace DungeonApp.DungeonLibrary
 {
     public sealed class Player : Character
     {
+        private string v;
+        private Race human;
+        private Weapon sword;
+
         //The beginning of a chain can be marked as abstract (incomplete), meaning it 
         //must be inherited to be used. 
         //Sealed denotes the end of an inheritance chain. Player cannot have children.
@@ -56,6 +60,14 @@ namespace DungeonApp.DungeonLibrary
                     break;
             }
         }
+
+        public Player(string v, Race human, Weapon sword)
+        {
+            this.v = v;
+            this.human = human;
+            this.sword = sword;
+        }
+
         private static string GetRaceDesc(Race race)
         {
             switch (race)

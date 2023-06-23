@@ -49,7 +49,7 @@ namespace DungeonLibrary
         }
         public WeaponType Type { get; set; }
         //CTORS
-        public Weapon(string name, int minDamage, int maxDamage, int bonusHitChance, bool isTwoHanded)
+        public Weapon(string name, int minDamage, int maxDamage, int bonusHitChance, bool isTwoHanded, WeaponType sword)
         {
             Name = name;
             MaxDamage = maxDamage;//Max Damage MUST be ASSIGNED before MinDamage, regardless of how it appears in the parameter list.
