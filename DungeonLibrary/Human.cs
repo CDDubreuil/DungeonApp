@@ -28,7 +28,7 @@ namespace DungeonApp.DungeonLibrary
         }
         public string Description { get; set; }
         public Human (string name, int HitChance, int block, int maxLife, int maxDamage, int minDamage, string description)
-            : base(name, HitChance, block, maxLife)
+            : base(name, HitChance, block, maxLife, maxDamage, minDamage, description)
 
         {
             MinDamage = minDamage;
