@@ -1,24 +1,25 @@
 ﻿using DungeonApp.DungeonLibrary;
 using DungeonLibrary;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
+
 namespace DungeonApp
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-
             #region Introduction
             //TODO Intro
-            Console.WriteLine("Hello");
+            Console.WriteLine("Hello Adventurer! Welcome to the Dungeon of Doom!");
             #endregion
 
             #region Player Creation
-            //Potential expansion: Let user choose from a list of premade weapons.
-            Weapon sword = new("Light Saber", 1, 8, 10, true, WeaponType.Sword);
-            //Potential expansion: Let the user choose their name and race
+            //Player Creation, after we've learned how to create custom Datatypes.
+            //Reference the notes in the TestHarness for some ideas of how to expand player creation.
+
+            //Potential expansion - Let the user choose from a list of pre-made weapons.
+            Weapon sword = new("Lightsaber", 1, 8, 10, true, WeaponType.Sword);
+
+            //Potential Expansion - Let the user choose their name and Race
             Player player = new("Leeroy Jenkins", Race.Human, sword);
 
             player.Score = 0;
@@ -31,14 +32,12 @@ namespace DungeonApp
                 #region Monster and room generation
                 //We need to generate a new monster and a new room for each encounter.                
                 //TODONE Generate a room - random string description
-                Console.WriteLine("Room #" + GetRoom());//Room # is temporary until you add room descriptions.
+                Console.WriteLine(GetRoom());
+                //Generate a Monster (custom datatype) 
                 Monster monster = Monster.GetMonster();
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("\nIn this room is a " + monster.Name);
                 Console.ResetColor();
-
-
-                //TODO Generate a Monster (custom datatype) 
                 #endregion
 
                 #region Encounter Loop                
@@ -71,13 +70,13 @@ namespace DungeonApp
                             break;
                         case '3':
                             Console.WriteLine("Player info: ");
-                            //TODO print player details to the screen
+                            //print player details to the screen
                             Console.WriteLine(player);
                             break;
 
                         case '4':
                             Console.WriteLine("Monster info: ");
-                            //TODO print monster details to the screen
+                            //print monster details to the screen
                             Console.WriteLine(monster);
                             break;
 
@@ -92,46 +91,49 @@ namespace DungeonApp
                             break;
                     }//end switch
                     #endregion
-                    //TODO Check Player Life. If they are dead, quit the game and show them their score.
-                    if (player.Life) <= 0); 
-                            {
-                        Console.WriteLine("ded");
-                        quit = true; //leave both loops.
+                    //Check Player Life. If they are dead, quit the game and show them their score.
+                    if (player.Life <= 0)
+                    {
+                        Console.WriteLine("Dude... You died!\a");
+                        quit = true;//leave both loops.
                     }
+
                 } while (!reload && !quit); //While reload and quit are both FALSE (!true), keep looping. If either becomes true, leave the inner loop.
                 #endregion
 
             } while (!quit);//While quit is NOT true, keep looping.
 
             #region Exit
-            //TODO output the final score
-            Console.WriteLine("You defeated" + player.Score + "monster" + (player.Score == 1 ? "." : "s."));
+            Console.WriteLine("You defeated " + player.Score +
+                " monster" + (player.Score == 1 ? "." : "s."));
             #endregion
         }//End Main()
 
-             static string GetRoom()
+        private static string GetRoom()
+        {
+            string[] rooms =
             {
-                string[] rooms =
-                {
-                "1",
-                "2",
-                "3",
-                "4",
-                "5"
+                "The walls are adorned with portraits of fearsome dragons, while a stuffed unicorn head hangs above the fireplace.",
+                "An enormous crystal chandelier hangs from the ceiling, casting a rainbow of colors across the room.",
+                "A giant mushroom serves as the centerpiece of the room, surrounded by whimsical fairy lights.",
+                "The floor is covered in a thick layer of soft, green moss, making it feel like you're walking on a forest floor.",
+                "A bookshelf filled with magical tomes lines one wall, while a cauldron bubbles away in the corner.",
+                "A suit of armor stands guard at the entrance, but it seems to be nodding off on the job.",
+                "A large stone fireplace dominates the room, but instead of wood, it's filled with shimmering gold coins.",
+                "A giant spiderweb stretches across the ceiling, with a creepy-crawly arachnid lurking nearby.",
+                "A bed shaped like a giant clamshell takes up most of the space, complete with a fluffy pearl-white comforter.",
+                "A gargoyle perched on the windowsill keeps watch over the room, occasionally shooting a jet of water out of its mouth."
             };
 
-                Random rand = new Random();
-                //rooms.Length
-                int index = rand.Next(rooms.Length);
-                string room = rooms[index];
-                return room;
+            Random rand = new Random();
+            //rooms.Length
+            int index = rand.Next(rooms.Length);
+            string room = rooms[index];
+            return room;
 
-                //Refactor:
-                //return rooms[new Random().Next(rooms.Length)];
-            }//End GetRoom()
+            //Refactor:
+            //return rooms[new Random().Next(rooms.Length)];
+        }//End GetRoom()
 
-
-        }//End class
-    }//end namespace
-}
-
+    }//End class
+}//end namespace
