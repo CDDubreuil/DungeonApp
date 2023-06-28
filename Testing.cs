@@ -8,5 +8,9 @@ namespace DungeonApp
 {
     internal class Testing
     {
+        static void Main(string[] args)
+        {
+            Console.WriteLine();
+        }
     }
 }

@@ -34,7 +34,7 @@ namespace DungeonApp.DungeonLibrary
             : base(name, 70, 5, 40)//hitchance, block, maxlife/life
         {
            
-            PlayerRace = playerRace;
+            PlayerRace =  playerRace;
             EquippedWeapon = equippedWeapon;
 
             #region Potential Expansion: Racial Bonuses
@@ -51,7 +51,7 @@ namespace DungeonApp.DungeonLibrary
                     break;
                 case Race.Warlock:
                     break;
-                case Race.Ghost:
+                case Race.Dragon:
                     break;
                 case Race.Vampire:
                     break;
@@ -68,20 +68,20 @@ namespace DungeonApp.DungeonLibrary
         {
             switch (race)
             {//replace break; with return "description";
-                case Race.Lich:
-                    return "..";
+                case Race.Beholder:
+                    return "How are you holding a weapon right now? It's probably best to not think about that.";
                 case Race.Zombie:
-                    return "..";
+                    return "You sure won't make any friends with that pretty face of yours. ";
                 case Race.Skeleton:
-                    return "..";
+                    return "You aren't really sure how they plan on killing you since you're already dead. ";
                 case Race.Warlock:
-                    return "..";
-                case Race.Ghost:
-                    return "..";
+                    return "Hopefully your patron won't reject you after he sees you clearly haven't been using those home security spells. ";
+                case Race.Dragon:
+                    return "Honestly if you really wanted to, you could just barbecue all these people in your cave.";
                 case Race.Vampire:
-                    return "..";
+                    return "You really hope none of these dungeon delvers are Italian. ";
                 case Race.Werewolf:
-                    return "..";
+                    return "You spent 6 hours brushing your hair this morning.";
                 default:
                     return "..";
             }
