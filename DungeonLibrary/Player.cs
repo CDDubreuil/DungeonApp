@@ -12,9 +12,7 @@ namespace DungeonApp.DungeonLibrary
 {
     public sealed class Player : Character
     {
-        private string v;
-        private Race human;
-        private Weapon sword;
+     
 
         //The beginning of a chain can be marked as abstract (incomplete), meaning it 
         //must be inherited to be used. 
@@ -43,51 +41,48 @@ namespace DungeonApp.DungeonLibrary
             //on which race they picked. 
             switch (PlayerRace)
             {
-                case Race.Human:
+                case Race.Lich:
                     HitChance += 5;
                     break;
-                case Race.Tiefling:
+                case Race.Zombie:
                     break;
-                case Race.Dwarf:
+                case Race.Skeleton:
                     break;
-                case Race.Giant:
+                case Race.Warlock:
                     break;
-                case Race.Orc:
+                case Race.Ghost:
                     break;
-                case Race.Cyborg:
+                case Race.Vampire:
+                    break;
+                case Race.Werewolf:
                     break;
                 default:
                     break;
             }
         }
 
-        public Player(string v, Race human, Weapon sword)
-        {
-            this.v = v;
-            this.human = human;
-            this.sword = sword;
-        }
+      
 
-        private static string GetRaceDesc(Race race)
+        public static string GetRaceDesc(Race race)
         {
             switch (race)
             {//replace break; with return "description";
-                case Race.Human:
-
-                    return "Human";
-                case Race.Tiefling:
-                    return "Tiefling";
-                case Race.Dwarf:
-                    return "Dwarf";
-                case Race.Giant:
-                    return "Giant";
-                case Race.Orc:
-                    return "Orc";
-                case Race.Cyborg:
-                    return "Cyborg";
+                case Race.Lich:
+                    return "..";
+                case Race.Zombie:
+                    return "..";
+                case Race.Skeleton:
+                    return "..";
+                case Race.Warlock:
+                    return "..";
+                case Race.Ghost:
+                    return "..";
+                case Race.Vampire:
+                    return "..";
+                case Race.Werewolf:
+                    return "..";
                 default:
-                    return "";
-
+                    return "..";
             }
         }
 

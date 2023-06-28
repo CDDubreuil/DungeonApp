@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DungeonLibrary;
 
+
 namespace DungeonApp.DungeonLibrary
 {
     public class Monster : Character
@@ -27,6 +28,7 @@ namespace DungeonApp.DungeonLibrary
             }
         }
         public string Description { get; set; }
+        
         public Monster(string name, int hitChance, int block, int maxLife, int maxDamage, int minDamage, string description)
             :base(name, hitChance, block, maxLife)
 
@@ -58,16 +60,22 @@ namespace DungeonApp.DungeonLibrary
         public static Monster GetMonster()
         {
             //TODO come back to replace these monsters with your own monster subtypes later. 
-            Monster m1 = new("First Monster", 50, 20, 25, 8, 2, "This is a test monster");
-            Monster m2 = new("Second Monster", 70, 20, 25, 8, 2, "This is a test monster");
-            Monster m3 = new("Third Monster", 55, 20, 25, 8, 2, "This is a test monster");
-            Monster m4 = new("Fourth Monster", 65, 20, 25, 8, 2, "This is a test monster");
+         
+            Human h1 = new Human("Lone Wanderer", 50, 20, 25, 8, 2, "A wretched soul, moving aimlessly through the lands. ");
+            Human h2 = new Human("Sneaky Thief", 70, 20, 25, 8, 2, "A lowly thief who will steal whatever they can to get by. ");
+            Human h3 = new Human("Bold Adventurer", 55, 20, 25, 8, 2, "A brave person who is roaming in search of glory and riches. ");
+            Human h4 = new Human("White Knight", 65, 20, 25, 8, 2, "A noble hero who has sworn to rid the lands of evil. ");
+
+            Dwarf d1 = new Dwarf("Cheery Digger", 50, 20, 25, 8, 2, "He. Won't. Stop. Whistling. ");
+            Dwarf d2 = new Dwarf("Bearded Lady", 70, 20, 25, 8, 2, "A lady dwarf whose beard is elaborately braided with flowers. ");
+            Dwarf d3 = new Dwarf("General Foreman", 55, 20, 25, 8, 2, "A gruff old dwarf who is much stronger than his aged frame suggests. ");
+            Dwarf d4 = new Dwarf("Tiny Miner", 65, 20, 25, 8, 2, "Just a tiny lil fella with a big ol' pickaxe.  ");
 
             List<Monster> monsters = new()
-            { m1, m1, 
-            m2, m2, m2, m2,
-            m3, m3, m3,
-            m4
+            { h1, d1, 
+            h2, h2, d2, d2,
+            h3, h3, d3,
+            d4
             };
 
             Random rand = new Random();
