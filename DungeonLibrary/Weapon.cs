@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,17 +12,25 @@ namespace DungeonLibrary
     {
         //Fields (private type _camelCase;)
         private string _name;
-        private int _minDamage;
         private int _maxDamage;
+        private int _minDamage;
         private int _bonusHitChance;
         private bool _isTwoHanded;
+        private string _description;
+      
 
         //Properties (public type PascalCase { get {} set {} }
         public string Name
         {
             get { return _name; }
             set { _name = value; }
-        }       
+        }
+
+        public int MaxDamage
+        {
+            get { return _maxDamage; }
+            set { _maxDamage = value; }
+        }
 
         public int MinDamage
         {
@@ -30,11 +39,7 @@ namespace DungeonLibrary
             set { _minDamage = value > 0 && value < MaxDamage ? value : 1; }
         }       
 
-        public int MaxDamage
-        {
-            get { return _maxDamage; }
-            set { _maxDamage = value; }
-        }      
+           
 
         public int BonusHitChance
         {
@@ -47,17 +52,46 @@ namespace DungeonLibrary
             get { return _isTwoHanded; }
             set { _isTwoHanded = value; }
         }
+
+        public string Description
+        {
+            get { return _description; }
+            set { _name = value;  }
+        }
+
         public WeaponType Type { get; set; }
+
+        public enum WeaponType
+        {
+            Sword,
+            Dagger,
+            Club,
+            Staff
+        }
         //CTORS
-        public Weapon(string name, int minDamage, int maxDamage, int bonusHitChance, bool isTwoHanded)
+        public Weapon(string name, int minDamage, int maxDamage, int bonusHitChance, bool isTwoHanded, string description, Type weaponType)
         {
             Name = name;
             MaxDamage = maxDamage;//Max Damage MUST be ASSIGNED before MinDamage, regardless of how it appears in the parameter list.
             MinDamage = minDamage;
             BonusHitChance = bonusHitChance;
             IsTwoHanded = isTwoHanded;//added after introducing enums
+            Description = description;
             Type = Type;
         }//FQ CTOR
+
+        public static List <Weapon> GetWeapons()
+        {
+            Weapon w1 = new Weapon("Saw Cleaver", 50, 25, 15, false, "A blood soaked sawblade covered in wickedly sharp teeth. You feel like this would be useful for hunting beasts", WeaponType.Sword);
+            Weapon w2 = new Weapon("Big Bonk", 60, 45, 20, true, "Unga Bunga ", WeaponType.Club);
+
+
+            List<Weapon> weapons = new()
+            {
+                w1,w2,
+            };
+            return weapons;
+        }
 
         //Methods
         public override string ToString()
@@ -67,6 +101,6 @@ namespace DungeonLibrary
                    $"Damage: {MinDamage} - {MaxDamage}\n" +
                    $"{(IsTwoHanded ? "Two" : "One")}-Handed";
         }
-
+       
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DungeonApp.DungeonLibrary;
 using DungeonLibrary;
+using System.ComponentModel;
 
 namespace DungeonApp
 {
@@ -9,20 +10,40 @@ namespace DungeonApp
         {
             #region Introduction
             //TODO Intro
-            Console.WriteLine("Hello Adventurer! Welcome to the Dungeon of Doom!");
+            Console.WriteLine("DUNGEON DEFENDER");
             #endregion
 
+
             #region Player Creation
+            Console.WriteLine("What is your name?");
+            string name = Console.ReadLine();
+            Console.WriteLine("Hello " + name + ", please choose a race: ");
+            foreach (Race value in Enum.GetValues(typeof(Race)))
+            {
+                Console.WriteLine(value);
+            }
+
+           // Player player = new(name,7,3,12,Lich, sword );
+            string userRace = Console.ReadLine();
+
+            Console.WriteLine($"\n\n You come back to your home after a long night of hunting, only to see torches and tents " +
+                $"set up around the entrance. There is no one in the tents, but you can clearly hear noises echoing from deep within the depths" +
+                $"of your beloved dungeon. Furiously, you charge towards it. You grasp your trusty weapon. It is a ");
+           // foreach ()
+            {
+                Console.WriteLine();
+            }
+
             //Player Creation, after we've learned how to create custom Datatypes.
             //Reference the notes in the TestHarness for some ideas of how to expand player creation.
 
-    List<UserRace> races = Enum.GetValues(typeof(UserRace)).Cast<UserRace>().ToList();
-            Console.WriteLine(races);
+            //Potential expansion - Let the user choose from a list of pre-made weapons.
+           
 
             //Potential Expansion - Let the user choose their name and Race
-            Player player = new("Leeroy Jenkins", Race.Human, sword);
+       
 
-            player.Score = 0;
+           // player.Score = 0;
             #endregion
 
             //Outer Loop
@@ -59,19 +80,19 @@ namespace DungeonApp
                     {
                         case '1':
                             Console.WriteLine("Attack!");
-                            //TODO Combat functionality
+                           //Combat.DoBattle( player,  monster);
                             break;
                         case '2':
-                            Console.WriteLine("Run Away!!");
+                            Console.WriteLine("Run Away!");
                             //TODO Give the monster a free attack chance
-
+                           // Combat.DoAttack(monster, player);
                             //Leave the inner loop (reload the room) and get a new room & monster.
                             reload = true;
                             break;
                         case '3':
                             Console.WriteLine("Player info: ");
                             //print player details to the screen
-                            Console.WriteLine(player);
+//Console.WriteLine(player);
                             break;
 
                         case '4':
@@ -79,10 +100,10 @@ namespace DungeonApp
                             //print monster details to the screen
                             Console.WriteLine(monster);
                             break;
-
+                       
                         case '5':
                             //quit the whole game. "reload = true;" gives us a new room and monster, "quit = true" quits the game, leaving both the inner AND outer loops.
-                            Console.WriteLine("No one likes a quitter!");
+                            Console.WriteLine("You give up, and leave your dungeon for the last time. Goodbye.");
                             quit = true;
                             break;
 
@@ -92,7 +113,7 @@ namespace DungeonApp
                     }//end switch
                     #endregion
                     //Check Player Life. If they are dead, quit the game and show them their score.
-                    if (player.Life <= 0)
+                  //  if (player.Life <= 0)
                     {
                         Console.WriteLine("Dude... You died!\a");
                         quit = true;//leave both loops.
@@ -104,8 +125,8 @@ namespace DungeonApp
             } while (!quit);//While quit is NOT true, keep looping.
 
             #region Exit
-            Console.WriteLine("You defeated " + player.Score +
-                " monster" + (player.Score == 1 ? "." : "s."));
+         //   Console.WriteLine("You defeated " + player.Score +
+         //       " monster" + (player.Score == 1 ? "." : "s."));
             #endregion
         }//End Main()
 
@@ -113,16 +134,31 @@ namespace DungeonApp
         {
             string[] rooms =
             {
-                "The walls are adorned with portraits of fearsome dragons, while a stuffed unicorn head hangs above the fireplace.",
-                "An enormous crystal chandelier hangs from the ceiling, casting a rainbow of colors across the room.",
-                "A giant mushroom serves as the centerpiece of the room, surrounded by whimsical fairy lights.",
-                "The floor is covered in a thick layer of soft, green moss, making it feel like you're walking on a forest floor.",
-                "A bookshelf filled with magical tomes lines one wall, while a cauldron bubbles away in the corner.",
-                "A suit of armor stands guard at the entrance, but it seems to be nodding off on the job.",
-                "A large stone fireplace dominates the room, but instead of wood, it's filled with shimmering gold coins.",
-                "A giant spiderweb stretches across the ceiling, with a creepy-crawly arachnid lurking nearby.",
-                "A bed shaped like a giant clamshell takes up most of the space, complete with a fluffy pearl-white comforter.",
-                "A gargoyle perched on the windowsill keeps watch over the room, occasionally shooting a jet of water out of its mouth."
+                "Your beloved room of antique pottery has been ransacked." +
+                " Clearly, a reckless fiend has been rolling around into your pots, reveling in the damage they caused.",
+
+                "Tragically, your beloved altar has been desecrated. All of your hard-earned dragon skulls and troll-fat" +
+                "candles have been moved around, and your prized soul gems are missing. The Great One will not be pleased with this setback.",
+
+                "The catacombs are in dire shape. Coffins have been smashed, the gold and prized heirlooms stolen from those who are resting inside. " +
+                "Great-Uncle Hrothgar and Granny Magdalene are in pieces across the floor." +
+                "You sigh in frustration. You only just summoned them yesterday. It'll take so much work to raise them again. ",
+
+                "In your alchemical laboratory, a strange liquid bubbles in your cauldron. Someone has recently tried to brew a potion" +
+                "in it, and it clearly backfired. *Sigh* This thing is cast iron. You hope you don't have to reseason it. All your " +
+                "best ingredients are gone too. Only some garlic and a handful of small white flowers are left, but even they are " +
+                "trampled on the ground. ",
+
+                "In the Midden, the wretches and wraiths that lived down there have been slain. Now where are you going to get body parts from when it is time to summon" +
+                "your master?? You'll have to start raiding camps again, like a common barbarian.",
+
+                "The library horrifies you. Some spellbooks have been taken, and other books have been reshelved. " +
+                "You had gone through and meticulously stacked and organized them for your rituals, and some ignorant fool has ruined hours of careful planning.",
+
+                "The vast cavern you step into is full of spiderwebs. Dew glistens on the delicate threads. Your sweet, eight-legged friends lay splattered across" +
+                "the ground. Even the brood mother didn't escape the carnage. Only a few egg sacs remain untouched. Your heart aches, and you make a mental note to come back" +
+                "and tend to the few remaining unhatched babies after you get your revenge. " 
+           
             };
 
             Random rand = new Random();

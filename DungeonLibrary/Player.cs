@@ -12,6 +12,8 @@ namespace DungeonApp.DungeonLibrary
 {
     public sealed class Player : Character
     {
+     
+
         //The beginning of a chain can be marked as abstract (incomplete), meaning it 
         //must be inherited to be used. 
         //Sealed denotes the end of an inheritance chain. Player cannot have children.
@@ -21,7 +23,7 @@ namespace DungeonApp.DungeonLibrary
         //No fields, no business rules
 
         //Props
-        public Race PlayerRace { get; set; }
+        public string PlayerRace { get; set; }
         public Weapon EquippedWeapon { get; set; }
         public int Score { get; set; }
 
@@ -31,59 +33,23 @@ namespace DungeonApp.DungeonLibrary
             Weapon equippedWeapon)
             : base(name, 70, 5, 40)//hitchance, block, maxlife/life
         {
+           
             PlayerRace = playerRace;
             EquippedWeapon = equippedWeapon;
 
             #region Potential Expansion: Racial Bonuses
             //build a switch based on the PlayerRace. Apply buffs/debuffs depending
             //on which race they picked. 
-            switch (PlayerRace)
-            {
-                case Race.Human:
-                    HitChance += 5;
-                    break;
-                case Race.Tiefling:
-                    break;
-                case Race.Dwarf:
-                    break;
-                case Race.Giant:
-                    break;
-                case Race.Orc:
-                    break;
-                case Race.Cyborg:
-                    break;
-                default:
-                    break;
-            }
-        }
-        private static string GetRaceDesc(Race race)
-        {
-            switch (race)
-            {//replace break; with return "description";
-                case Race.Human:
-
-                    return "Human";
-                case Race.Tiefling:
-                    return "Tiefling";
-                case Race.Dwarf:
-                    return "Dwarf";
-                case Race.Giant:
-                    return "Giant";
-                case Race.Orc:
-                    return "Orc";
-                case Race.Cyborg:
-                    return "Cyborg";
-                default:
-                    return "";
-
-            }
+           
         }
 
- public override string ToString()
-        {
-            return base.ToString() + $"\nWeapon: \n{EquippedWeapon}\n" +
-                $"Description: \n{GetRaceDesc(PlayerRace)}";
-        }
+      public List <Race> PlayerRaces = new List <Race>();
+         Race Lich = new Race
+            ( name = "Lich", 
+             );
+        
+
+
         public override int CalcDamage()
         {         //throw new NotImplementedException();
             Random rand = new Random();
