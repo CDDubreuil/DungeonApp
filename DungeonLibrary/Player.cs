@@ -40,15 +40,52 @@ namespace DungeonApp.DungeonLibrary
             #region Potential Expansion: Racial Bonuses
             //build a switch based on the PlayerRace. Apply buffs/debuffs depending
             //on which race they picked. 
-           
+            switch (PlayerRace)
+            {
+                case Race.Lich:
+                    HitChance += 5;
+                    break;
+                case Race.Zombie:
+                    break;
+                case Race.Skeleton:
+                    break;
+                case Race.Warlock:
+                    break;
+                case Race.Ghost:
+                    break;
+                case Race.Vampire:
+                    break;
+                case Race.Werewolf:
+                    break;
+                default:
+                    break;
+            }
         }
 
-      public List <Race> PlayerRaces = new List <Race>();
-         Race Lich = new Race
-            ( name = "Lich", 
-             );
-        
+      
 
+        public static string GetRaceDesc(Race race)
+        {
+            switch (race)
+            {//replace break; with return "description";
+                case Race.Lich:
+                    return "..";
+                case Race.Zombie:
+                    return "..";
+                case Race.Skeleton:
+                    return "..";
+                case Race.Warlock:
+                    return "..";
+                case Race.Ghost:
+                    return "..";
+                case Race.Vampire:
+                    return "..";
+                case Race.Werewolf:
+                    return "..";
+                default:
+                    return "..";
+            }
+        }
 
         public override int CalcDamage()
         {         //throw new NotImplementedException();

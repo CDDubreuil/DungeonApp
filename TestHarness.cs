@@ -39,7 +39,7 @@ namespace DungeonApp
 
             #region Weapon Testing
             Console.Write("Equipped Weapon: ");
-            Weapon w1 = new Weapon("Wooden Stick", 1, 5, 0, false);
+            Weapon w1 = new Weapon("Wooden Stick", 1, 5, 0, false, WeaponType.Sword);
             Console.WriteLine(w1.ToString());
             #endregion
 
@@ -49,7 +49,7 @@ namespace DungeonApp
             Console.WriteLine("What is your name? ");
             string name = "Maggie";
             Race race = (Race)1;
-            Player p1 = new Player(name, 75, 50, 100, Race.Human, w1);
+            Player p1 = new Player(name, 75, 50, 100, Race.Lich, w1);
             Console.WriteLine(p1);
 
             Console.WriteLine("Calc Damage: " + p1.CalcDamage());
