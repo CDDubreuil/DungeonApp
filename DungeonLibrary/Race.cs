@@ -8,11 +8,13 @@ namespace DungeonLibrary
 {
     public enum Race
     {
-        Human,
-        Tiefling,
-        Dwarf,
-        Giant,
-        Orc,
-        Cyborg
+       Lich,
+       Zombie,
+       Skeleton,
+       Warlock,
+       Ghost,
+       Vampire,
+       Werewolf
     }
 }
+
