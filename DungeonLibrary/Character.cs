@@ -47,22 +47,8 @@
             //if we happen to assign Life first, it will default to 0, because it can't be more than MaxLife (0).
             Life = life;
         }//end fully qualified constructor.
-        public Character(string name, int hitChance, int block, int maxLife)
-        {
-            Name = name;
-            HitChance = hitChance;
-            Block = block;
-            MaxLife = maxLife;
-            //Constructors are only called to create a NEW object; new characters should start out at max health.
-            Life = MaxLife;
-        }//end CTOR (Start at full health)
-
-        public Character()
-        {
-            //added for object initialization syntax, or for assigning default values.
-            //Default Constructor functionality is not inherited by child classes (we'll talk about inheritance a bit later)
-            //NOTE: If you use object initialization syntax, you must remember to set MaxLife first.
-        }
+      
+     
 
         //In combat, the attacker's HitChance minus the defender's Block will determine whether the attack hits.        
         public virtual int CalcBlock() { return Block; }

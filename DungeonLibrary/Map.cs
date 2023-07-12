@@ -4,11 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DungeonLibrary
+namespace DungeonApp.DungeonLibrary
 {
-    //make it public, make it an enum
-    public enum WeaponType
+    public class Map
     {
-        Sword
+        static void Main(string[] args)
+        {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
     }
 }

@@ -18,9 +18,9 @@ namespace DungeonApp
             Console.WriteLine("What is your name?");
             string name = Console.ReadLine();
             Console.WriteLine("Hello " + name + ", please choose a race: ");
-            foreach (Race value in Enum.GetValues(typeof(Race)))
+           // foreach (Race value in Enum.GetValues(typeof(Race)))
             {
-                Console.WriteLine(value);
+          //      Console.WriteLine(value);
             }
 
            // Player player = new(name,7,3,12,Lich, sword );
@@ -137,7 +137,7 @@ namespace DungeonApp
                 "Your beloved room of antique pottery has been ransacked." +
                 " Clearly, a reckless fiend has been rolling around into your pots, reveling in the damage they caused.",
 
-                "Tragically, your beloved altar has been desecrated. All of your hard-earned dragon skulls and troll-fat" +
+                "Tragically, your beloved altar has been desecrated. All of your hard-earned unicorn skulls and troll-fat" +
                 "candles have been moved around, and your prized soul gems are missing. The Great One will not be pleased with this setback.",
 
                 "The catacombs are in dire shape. Coffins have been smashed, the gold and prized heirlooms stolen from those who are resting inside. " +
