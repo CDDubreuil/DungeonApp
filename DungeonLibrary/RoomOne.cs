@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonApp.DungeonLibrary
 {
-    internal class WeaponEnum
+    internal class RoomOne
     {
     }
 }

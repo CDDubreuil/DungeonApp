@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 
 namespace DungeonApp.DungeonLibrary
 {
-    public enum MonsterList
-    {   Zombie,
-        Ghost,
-        Ghoul,
-        Thief,
-        Skeleton,
-        Demon,
-        Shia_LaBeouf,
-        Warlock
-
+    public enum UserWeaponList
+    {Saw_Cleaver,
+            Wabbajack, 
+            Big_Bonk
     }
 }

@@ -27,18 +27,15 @@ namespace DungeonApp.DungeonLibrary
             }
         }
         public string Description { get; set; }
-        public Human (string name, int HitChance, int block, int maxLife, int maxDamage, int minDamage, string description)
-            : base(name, HitChance, block, maxLife, maxDamage, minDamage, description)
+        public Human (string name, int HitChance, int block, int maxLife, int life, int maxDamage, int minDamage, string description)
+            : base(name, HitChance, block, maxLife, life,  maxDamage, minDamage, description)
 
         {
             MinDamage = minDamage;
             MaxDamage = maxDamage;
             Description = description;
         }
-        public Human()
-        {
-           
-        }
+      
         public override string ToString()
         {
             return $"*****MONSTER*****\n{base.ToString()}\n" +
@@ -55,10 +52,10 @@ namespace DungeonApp.DungeonLibrary
         public static Human GetHuman()
         {
             
-            Human h1 = new Human("Lone Wanderer", 50, 20, 25, 8, 2, "A wretched soul, moving aimlessly through the lands. ");
-            Human h2 = new Human("Sneaky Thief", 70, 20, 25, 8, 2, "A lowly thief who will steal whatever they can to get by. ");
-            Human h3 = new Human ("Bold Adventurer", 55, 20, 25, 8, 2, "A brave person who is roaming in search of glory and riches. ");
-            Human h4 = new Human ("White Knight", 65, 20, 25, 8, 2, "A noble hero who has sworn to rid the lands of evil. ");
+            Human h1 = new Human("Lone Wanderer", 50, 20, 25, 8, 2, 5, "A wretched soul, moving aimlessly through the lands. ");
+            Human h2 = new Human("Sneaky Thief", 70, 20, 25, 8, 2, 5,  "A lowly thief who will steal whatever they can to get by. ");
+            Human h3 = new Human ("Bold Adventurer", 55, 20, 25, 8, 2, 5,  "A brave person who is roaming in search of glory and riches. ");
+            Human h4 = new Human ("White Knight", 65, 20, 25, 8, 2, 5, "A noble hero who has sworn to rid the lands of evil. ");
 
             List<Human> humans = new()
             { h1, h1,

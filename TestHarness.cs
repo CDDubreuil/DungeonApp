@@ -39,8 +39,8 @@ namespace DungeonApp
 
             #region Weapon Testing
             Console.Write("Equipped Weapon: ");
-            Weapon w1 = new Weapon("Wooden Stick", 1, 5, 0, false, WeaponType.Sword);
-            Console.WriteLine(w1.ToString());
+            //Weapon w1 = new Weapon("Wooden Stick", 1, 5, 0, false, WeaponType.Sword);
+           // Console.WriteLine(w1.ToString());
             #endregion
 
 
@@ -48,13 +48,13 @@ namespace DungeonApp
             Console.WriteLine("Player: ");
             Console.WriteLine("What is your name? ");
             string name = "Maggie";
-            Race race = (Race)1;
-            Player p1 = new Player(name, 75, 50, 100, Race.Lich, w1);
-            Console.WriteLine(p1);
+           // Race race = (Race)1;
+           // Player p1 = new Player(name, 75, 50, 100, Race.Lich, w1);
+          //  Console.WriteLine(p1);
 
-            Console.WriteLine("Calc Damage: " + p1.CalcDamage());
-            Console.WriteLine("Calc Block: " + p1.CalcBlock());
-            Console.WriteLine("Calc Hit Chance: " + p1.CalcHitChance());
+           // Console.WriteLine("Calc Damage: " + p1.CalcDamage());
+          //  Console.WriteLine("Calc Block: " + p1.CalcBlock());
+         //   Console.WriteLine("Calc Hit Chance: " + p1.CalcHitChance());
 
 
 

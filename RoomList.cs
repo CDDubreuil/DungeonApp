@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DungeonLibrary
+namespace DungeonApp
 {
-    public enum Race
+    public enum RoomList
     {
-       
     }
 }
-
