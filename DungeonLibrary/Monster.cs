@@ -46,26 +46,25 @@ namespace DungeonApp.DungeonLibrary
         }
         public override int CalcDamage()
         {
-            //throw new NotImplementedException();
+           int damage = new Random().Next(MinDamage, MaxDamage + 1);
+            Life -= damage;
             return new Random().Next(MinDamage, MaxDamage + 1); //+ 1 because it's exclusive. 
         }
         
 
         public static Monster GetMonster()
         {
-            //TODO come back to replace these monsters with your own monster subtypes later. 
+            
+            Monster h1 = new Human("Lone Wanderer", 50, 20, 100, 35, 15, 5,  "A wretched soul, moving aimlessly through the lands. ");
+            Monster h2 = new Human("Sneaky Thief", 70, 40, 600, 60, 30, 10,  "A lowly thief who will steal whatever they can to get by. ");
+            Monster h3 = new Human("Bold Adventurer", 55, 350, 75, 75, 40, 15, "A brave person who is roaming in search of glory and riches. ");
+            Monster h4 = new Human("White Knight", 65, 60, 125, 125, 50, 25,  "A noble hero who has sworn to rid the lands of evil. ");
 
-           // string name, int HitChance, int block, int maxLife, int life, int maxDamage, int minDamage, string description
 
-            Human h1 = new Human("Lone Wanderer", 50, 20, 35, 35, 15, 5,  "A wretched soul, moving aimlessly through the lands. ");
-            Human h2 = new Human("Sneaky Thief", 70, 40, 60, 60, 30, 10,  "A lowly thief who will steal whatever they can to get by. ");
-            Human h3 = new Human("Bold Adventurer", 55, 35, 75, 75, 40, 15, "A brave person who is roaming in search of glory and riches. ");
-            Human h4 = new Human("White Knight", 65, 60, 125, 125, 50, 25,  "A noble hero who has sworn to rid the lands of evil. ");
-
-            Dwarf d1 = new Dwarf("Cheery Digger", 50, 40, 75, 75, 50, 15, "He. Won't. Stop. Whistling. ");
-            Dwarf d2 = new Dwarf("Bearded Lady", 70, 60, 125, 125, 50, 15, "A lady dwarf whose beard is elaborately braided with flowers. ");
-            Dwarf d3 = new Dwarf("General Foreman", 70, 60, 125, 125, 50, 15, "A gruff old dwarf who is much stronger than his aged frame suggests. ");
-            Dwarf d4 = new Dwarf("Tiny Miner", 90, 70, 35, 35, 15, 5, "Just a tiny lil fella with a big ol' pickaxe.  ");
+            Monster d1 = new Dwarf("Lone Wanderer", 50, 20, 50, 50, 2, 5, "A wretched soul, moving aimlessly through the lands. ");
+            Monster d2 = new Dwarf("Cheery Digger", 70, 20, 50, 50, 2, 5, "He won't. stop. whistling. ");
+            Monster d3 = new Dwarf("General Foreman", 55, 20, 50, 50, 2, 5, "A gruff old dwarf who is much stronger than his aged frame suggests. ");
+            Monster d4 = new Dwarf("Tiny Miner", 65, 20, 50, 50, 2, 5, "Just a tiny lil fella with a big ol' pickaxe.  ");
 
 
 

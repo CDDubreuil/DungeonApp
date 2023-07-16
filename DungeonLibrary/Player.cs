@@ -24,17 +24,17 @@ namespace DungeonApp.DungeonLibrary
         //No fields, no business rules
 
         //Props
-        public string Race { get; set; }
-        public Weapon EquippedWeapon { get; set; }
+        public Race PlayerRace { get; set; }
+        public Weapon EquippedWeapon{ get; set; }
         public int Score { get; set; }
 
 
 
         //Ctors
-        public Player(string race, UserWeapon equippedWeapon, int score, string name, int hitChance, int block, int maxLife, int life
+        public Player(Race playerRace, Weapon equippedWeapon, int score, string name, int hitChance, int block, int maxLife, int life
        ) : base(name, hitChance, block, maxLife, life)
         {
-            Race = race;
+            PlayerRace = playerRace;
             EquippedWeapon = equippedWeapon;
             Score = score;
         }

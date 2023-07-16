@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace DungeonApp
 {
-    public enum UserWeapon
+    public enum WeaponType
     {   Unarmed,
         Saw_Cleaver,
         Wabbajack,
         Big_Bonk,
-        Crystal_Staff,
-        Spatula,
-        Staff_of_Sluggishness
     }
 }
