@@ -1,6 +1,9 @@
-﻿using System;
+﻿using DungeonApp;
+using DungeonApp.DungeonLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,24 +51,24 @@ namespace DungeonLibrary
         //They don't require fields, so we can save a ton of space and time typing.
 
 
+        public WeaponType Type { get; set; }
         //CTORS
-        public Weapon(string name, int minDamage, int maxDamage, int bonusHitChance, string description)
+        public Weapon(string name, int minDamage, int maxDamage, int bonusHitChance, string description, WeaponType type)
         {
             Name = name;
             MaxDamage = maxDamage;//Max Damage MUST be ASSIGNED before MinDamage, regardless of how it appears in the parameter list.
             MinDamage = minDamage;
             BonusHitChance = bonusHitChance;
             Description = description;
-
+            Type = type;
             //added after introducing enums
 
         }//FQ CTOR
+    
 
-       
 
-
-        //Methods
-        public override string ToString()
+    //Methods
+    public override string ToString()
         {
             //return base.ToString(); -> DungeonLibrary.Weapon
             return $"{Name}\n" +
@@ -73,7 +76,35 @@ namespace DungeonLibrary
                    $"Bonus Hit: {BonusHitChance}%\n" +
                    $"{Description}";
         }
-    }
 
-    }
+    //           #region Weapon Bonus
+    //            switch (type)
+    //            {
+    //                case WeaponType.Unarmed:
+    //                    MinDamage += 5;
+    //                    MaxDamage += 10;
+    //                    BonusDamage += 10;
+    //                    BonusHitChance += 5;
+    //                    break;
+    //                case WeaponType.SawCleaver:
+    //                    MinDamage += 5;
+    //                    MaxDamage += 10;
+    //                    BonusDamage += 10;
+    //                    BonusHitChance += 10;
+    //                    break;
+    //                case WeaponType.BigBonk:
+    //                    MinDamage += 5;
+    //                    MaxDamage += 10;
+    //                    BonusDamage += 10;
+    //                    BonusHitChance += 10;
+    //                    break;
+    //                case default:
+    //            break; 
+    //            }
+    //#endregion Weapon Bonus
+}
+}
+
+
+    
 

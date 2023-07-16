@@ -10,7 +10,7 @@ namespace DungeonApp.DungeonLibrary
     {
         public string Effects { get; set; }
 
-        public Staff(string effects, string name, int minDamage, int maxDamage, int bonusHitChance, string description) : base(name, minDamage, maxDamage, bonusHitChance, description)
+        public Staff(string effects, string name, int minDamage, int maxDamage, int bonusHitChance, string description, WeaponType weaponType) : base(name, minDamage, maxDamage, bonusHitChance, description, weaponType)
         {
             Effects = effects;
         }

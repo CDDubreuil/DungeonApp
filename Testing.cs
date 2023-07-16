@@ -15,15 +15,21 @@ namespace DungeonApp
 {
     public class Testing
     {
-        
-    
-    static void Main(string[] args)
+
+
+        static void Main(string[] args)
         {
 
+            Weapon w1 = new Weapon("Unarmed", 5, 15, 5, "No weapon equipped", WeaponType.Unarmed);
+            Weapon w2 = new Weapon("Saw Cleaver", 10, 20, 10, "A serrated cleaver", WeaponType.Saw_Cleaver);
+            Weapon w3 = new Weapon("Big Bonk", 15, 25, 10, "A heavy blunt weapon", WeaponType.Big_Bonk);
+            List<Weapon> weapons = new()
+            {
+        w1, w2, w3
+            };
+
+            Player player = new Player(Race.None, null, 0, "", 50,50,50,50);
             
-
-
-            Player player = new Player("raceName",UserWeapon.Unarmed, 0, "name", 75, 75, 120, 120);
             Console.WriteLine("You come upon a decrepit castle, crumbling after eras of disuse. Vines snake around the walls. Bone shards stand out\n starkly against the dark earth. " +
                 "You sigh with contentment. Home.\n");
             // Thread.Sleep(6000);
@@ -36,214 +42,208 @@ namespace DungeonApp
             // Console.Clear();
             Console.WriteLine("No man will over take your home, or else your name isn't....wait, what was your name again?\n");
             string characterName = Console.ReadLine();
+            player.Name = characterName;
             Console.Clear();
             Console.WriteLine("\nWhat manner of creature are you?\n");
 
-            static UserRace GetUserRace()
+            List<Race> race = new List<Race>()
             {
-                while (true)
+                Race.Unicorn,
+                Race.Skeleton,
+                Race.Necromancer,
+                Race.Dragon,
+                Race.Vampire,
+                Race.Werewolf
+            };
+
+
+
+            for (int i = 0; i < race.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {race[i]}");
+            }
+
+            Console.WriteLine("Please select a race by entering its number");
+            int raceIndex = 0;
+            if (!int.TryParse(Console.ReadLine(), out raceIndex) || raceIndex < 1 || raceIndex > race.Count)
+            { Console.WriteLine("Invalid race selection"); }
+            else
+            {
+                
+                Race selectedRace = race[raceIndex - 1];
+                player.PlayerRace = selectedRace;
+                Console.WriteLine($"Selected race: {selectedRace}");
+                string raceDesc = GetRaceDesc(selectedRace);
+                Console.WriteLine($"Description: {raceDesc}");
+                static string GetRaceDesc(Race race)
                 {
-                    foreach (var item in Enum.GetNames(typeof(UserRace)))
+
+                    switch (race)
                     {
-                        Console.WriteLine(item);
-                    }
-                    string raceInput = Console.ReadLine();
-                    if (Enum.TryParse<UserRace>(raceInput, out UserRace selectedRace))
-                    { return selectedRace; }
-                    Console.WriteLine("Invalid");
-                }
-            }
-
-            UserRace selectedRace = GetUserRace();
-            string raceDesc = GetRaceDesc(selectedRace);
-
-
-            string GetRaceDesc(UserRace race)
-            {
-                switch (race)
-                {
-                    case UserRace.Unicorn:
-                        return "\nIt's not all sunshine and rainbows anymore.";
-                    case UserRace.Zombie:
-                        return "\nYou sure won't make any friends with that pretty face of yours. ";
-                    case UserRace.Skeleton:
-                        return "\nNot sure how they plan on killing you when you're already dead. ";
-                    case UserRace.Necromancer:
-                        return "\nYou've never met a corpse you didn't like. ";
-                    case UserRace.Dragon:
-                        return "\nHonestly if you really wanted to, you could just barbecue all these people who are lurking about.";
-                    case UserRace.Vampire:
-                        return "\nYou really hope none of these dungeon delvers are Italian. ";
-                    case UserRace.Werewolf:
-                        return "\nYou spent 6 hours brushing your hair this morning.";
-                    default:
-                        return "..";
-                }
-            }
-
-            string raceName = Console.ReadLine();
-            Console.WriteLine($"Description: {raceDesc}");
-
-            player.Race = raceName;
-
-
-
-            
-
-
-            Console.WriteLine("\nFilled with rage, you grip your weapon. It is a: \n");
-
-
-
-            static UserWeapon GetUserWeapon()
-            {
-                while (true)
-                {
-                    foreach (var item in Enum.GetNames(typeof(UserWeapon)))
-                    {
-                        Console.WriteLine(item);
-                    }
-                    string weaponInput = Console.ReadLine();
-                    if (Enum.TryParse<UserWeapon>(weaponInput, out UserWeapon selectedWeapon))
-                    { return selectedWeapon; }
-                    Console.WriteLine("Invalid");
-                }
-            }
-
-            UserWeapon selectedWeapon = GetUserWeapon();
-            string weaponDesc = GetWeaponDesc(selectedWeapon);
-
-
-            string GetWeaponDesc(UserWeapon weapon)
-
-            {
-                switch (weapon)
-                {
-                    case UserWeapon.Unarmed:
-                        return "\nYou don't bother grabbing any weapons.";
-                    case UserWeapon.Saw_Cleaver:
-                        return "\nThis thing is covered in blood already. Gross.";
-                    case UserWeapon.Big_Bonk:
-                        return "\nUnga Bunga. ";
-                    case UserWeapon.Spatula:
-                        return "\nIt's pretty okay at smacking things. ";
-                    case UserWeapon.Wabbajack:
-                        return "\nYou have absolutely no clue what this staff does. ";
-                    case UserWeapon.Crystal_Staff:
-                        return "\nThe most stereotypical staff you can imagine.";
-                    case UserWeapon.Staff_of_Sluggishness:
-                        return "\nYou suppose this staff makes everyone feel...sluggish? ";
-                    
-                    default:
-                        return "..";
-                }
-            }
-
-
-            //string GetWeaponDesc(UserWeapon weapon)
-            //{
-
-            //}
-
-
-
-
-            string weapon = Console.ReadLine();
-         
-           selectedWeapon = player.UserWeapon;
-
-
-            
-
-            Room entrance = new("The entrance to the dungeon awaits", 1, true, false, false, false);
-            Player playerOne = new Player(raceName, UserWeapon.selectedWeapon, 0, characterName, 75, 75, 120, 120);
-
-
-
-
-
-
-
-
-            bool quit = false;
-            do
-            {
-
-
-                Console.WriteLine(GetRoom());
-
-                Monster monster = Monster.GetMonster();
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("\nIn this room is a " + monster.Name);
-                Console.ResetColor();
-
-
-
-
-
-
-                bool reload = false;
-                do
-                {
-                    Console.WriteLine("\nPlease choose an action:\n" +
-                        "1) Attack\n" +
-                        "2) Run away\n" +
-                        "3) Player Info\n" +
-                        "4) Monster Info\n" +
-                        "5) Exit\n");
-
-                    char action = Console.ReadKey(true).KeyChar;
-                    Console.Clear();
-                    switch (action)
-                    {
-                        case '1':
-                            Console.WriteLine("Attack!");
-                            break;
-                        case '2':
-                            Console.WriteLine("Run Away!!");
-                            reload = true;
-                            break;
-                        case '3':
-                            Console.WriteLine("Player info: ");
-                            Console.WriteLine(playerOne);
-                            break;
-
-                        case '4':
-                            Console.WriteLine("Monster info: ");
-                            Console.WriteLine(monster);
-                            break;
-
-                        case '5':
-                            Console.WriteLine("No one likes a quitter!");
-                            quit = true;
-                            break;
-
+                        case Race.Unicorn:
+                            return "\nIt's not all sunshine and rainbows anymore.";
+                        case Race.Skeleton:
+                            return "\nNot sure how they plan on killing you when you're already dead. ";
+                        case Race.Necromancer:
+                            return "\nYou've never met a corpse you didn't like. ";
+                        case Race.Dragon:
+                            return "\nHonestly if you really wanted to, you could just barbecue all these people who are lurking about.";
+                        case Race.Vampire:
+                            return "\nYou really hope none of these dungeon delvers are Italian. ";
+                        case Race.Werewolf:
+                            return "\nYou spent 6 hours brushing your hair this morning.";
                         default:
-                            Console.WriteLine("Do you think this is a game?? Quit playing around!");
-                            break;
+                            return "..";
                     }
-                    if (playerOne.Life <= 0)
+
+
+                }
+
+
+
+                for (int i = 0; i < weapons.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {weapons[i].Name}");
+                }
+
+                Console.WriteLine("Please select a weapon by entering its number");
+                int weaponIndex = 0;
+                if (!int.TryParse(Console.ReadLine(), out weaponIndex) || weaponIndex < 1 || weaponIndex > weapons.Count)
+                { Console.WriteLine("Invalid weapon selection"); }
+                else
+                {
+                    Weapon selectedWeapon = weapons[weaponIndex - 1];
+                    
+                    player.EquippedWeapon = selectedWeapon;
+                    Console.WriteLine($"Selected weapon: {selectedWeapon.Name}");
+                    string weaponDesc = GetWeaponDesc(selectedWeapon.Type);
+                    Console.WriteLine($"Description: {weaponDesc}");
+                    static string GetWeaponDesc(WeaponType weapon)
                     {
-                        Console.WriteLine("Dude... You died!\a");
-                        quit = true;
+                        switch (weapon)
+                        {
+                            case WeaponType.Unarmed:
+                                return "You didn't bother grabbing any weapons";
+                            case WeaponType.Saw_Cleaver:
+                                return "This thing is covered in blood already. Gross";
+                            case WeaponType.Big_Bonk:
+                                return "Unga bunga";
+                            default:
+                                return "Unknown weapon";
+                        }
+
+
+
                     }
 
-                } while (!reload && !quit);
 
-
-            } while (!quit);
-
-            Console.WriteLine("You defeated " + playerOne.Score +
-                " monster" + (playerOne.Score == 1 ? "." : "s."));
-
-        }
+                    Room entrance = new("The entrance to the dungeon awaits", 1, true, false, false, false);
+                    
+                    bool quit = false;
+                    do
+                    {
 
 
 
-        public static string GetRoom()
-        {
-            string[] rooms =
-            {"The crypts have been disturbed. Granny Hildegarde is in pieces on the floor. You sigh. It'll take weeks to gather enough materials to summon her again.",
+                        Monster monster = Monster.GetMonster();
+                        Console.WriteLine(GetRoom());
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("\nIn this room is a " + monster.Name);
+                        Console.ResetColor();
+
+
+                        bool reload = false;
+                        do
+                        {
+                            Console.WriteLine("\nPlease choose an action:\n" +
+                                "1) Attack\n" +
+                                "2) Run away\n" +
+                                "3) Player Info\n" +
+                                "4) Monster Info\n" +
+                                "5) Exit\n");
+
+                            char action = Console.ReadKey(true).KeyChar;
+                            Console.Clear();
+                                    int playerHitChance = player.CalcHitChance();
+                                    int monsterHitChance = monster.CalcHitChance();
+                            int playerDamage = player.CalcDamage();
+                            int monsterDamage = monster.CalcDamage();
+                            switch (action)
+                            {
+                                case '1':
+                                    Console.WriteLine("Attack!");
+                                    if (playerHitChance >= monsterHitChance)
+                                    {
+                                        //int playerDamage = player.CalcDamage();
+                                        monster.Life -= playerDamage;
+                                        player.Life -= monsterDamage;
+                                    }
+                                    if (monster.Life <= 0)
+                                    {
+                                        Console.WriteLine("The intruder has been defeated");
+                                        player.Score++;
+                                        reload = true;
+                                    }
+                                    else
+                                    {
+                                    //int monsterDamage = monster.CalcDamage();
+                                        player.Life -= monsterDamage;
+                                        Console.WriteLine($"You hit the enemy for {playerDamage} damage!");
+                                        Console.WriteLine($"The enemy fights back and wounds you for {monsterDamage} damage!");
+                                    
+                                    }
+                                    if (playerDamage == 0)
+                                    {
+                                        Console.WriteLine("you missed the enemy!");
+                                    }
+                                    break;
+                                case '2':
+                                    Console.WriteLine("Run Away!!");
+                                    reload = true;
+                                    break;
+                                case '3':
+                                    Console.WriteLine("Player info: ");
+                                    Console.WriteLine(player);
+                                    Console.WriteLine($"Player Race: {player.PlayerRace}");
+                                    Console.WriteLine($"Equipped Weapon: {player.EquippedWeapon.Name}");
+                                    break;
+
+                                case '4':
+                                    Console.WriteLine("Monster info: ");
+                                    Console.WriteLine(monster);
+                                    break;
+
+                                case '5':
+                                    Console.WriteLine("No one likes a quitter!");
+                                    quit = true;
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Do you think this is a game?? Quit playing around!");
+                                    break;
+                            }
+                            if (player.Life <= 0)
+                            {
+                                Console.WriteLine("Dude... You died!\a");
+                                quit = true;
+                            }
+
+                        } while (!reload && !quit);
+
+
+                    } while (!quit);
+
+                    Console.WriteLine("You defeated " + player.Score +
+                        " monster" + (player.Score == 1 ? "." : "s."));
+
+
+
+
+
+                    static string GetRoom()
+                    {
+                        string[] rooms =
+                        {"The crypts have been disturbed. Granny Hildegarde is in pieces on the floor. You sigh. It'll take weeks to gather enough materials to summon her again.",
              "You enter the library and see that these barbarians have scattered the books across the floor. Have they never been taught to reshelf things??",
              "Your beautiful dragon wife is sitting in the center of the cavernous room, fuming. There are piles of fresh humans strewn around her. You assure her that you will take care of the intruders, " +
              "more to comfort yourself than her. She can clearly handle the situation just fine. ",
@@ -255,16 +255,19 @@ namespace DungeonApp
              "This room once housed your vast antique pottery collection. Some inconsiderate fool appears to have rolled through them all, smashing them all to shards. You are furious, as a good argillomancer is incredibly expensive to hire."
             };
 
-            Random rand = new Random();
-            //rooms.Length;
-            int index = rand.Next(rooms.Length);
-            string room = rooms[index];
-            return room;
+                        Random rand = new Random();
+                        //rooms.Length;
+                        int index = rand.Next(rooms.Length);
+                        string room = rooms[index];
+                        return room;
 
-            //Refactor:
-           // return rooms[new Random().Next(rooms.Length)];
+                        //Refactor:
+                        // return rooms[new Random().Next(rooms.Length)];
+                    }
+                    //  End GetRoom();
+
+                }
+            }
         }
-        //  End GetRoom();
-
     }
 }

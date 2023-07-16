@@ -13,7 +13,7 @@ namespace DungeonApp.DungeonLibrary
 
         public bool IsTwoHanded { get; set; }
 
-        public Sword(bool isTwoHanded, string name, int minDamage, int maxDamage, int bonusHitChance, string description) : base(name, minDamage, maxDamage, bonusHitChance, description)
+        public Sword(bool isTwoHanded, string name, int minDamage, int maxDamage, int bonusHitChance, string description, WeaponType weaponType) : base(name, minDamage, maxDamage, bonusHitChance, description, weaponType)
         {
             IsTwoHanded = isTwoHanded;
         }
