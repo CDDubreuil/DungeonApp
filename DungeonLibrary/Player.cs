@@ -27,16 +27,23 @@ namespace DungeonApp.DungeonLibrary
         public Race PlayerRace { get; set; }
         public Weapon EquippedWeapon{ get; set; }
         public int Score { get; set; }
-
+        public int RaceStrength { get; set; }
+        public int RaceAgility { get; set; }
+        public int RaceDefense { get; set; }
+        public int RaceHealth { get; set; }
 
 
         //Ctors
-        public Player(Race playerRace, Weapon equippedWeapon, int score, string name, int hitChance, int block, int maxLife, int life
+        public Player(Race playerRace, Weapon equippedWeapon, int score, int raceStrength, int raceAgility, int raceDefense, int raceHealth, string name, int hitChance, int block, int maxLife, int life
        ) : base(name, hitChance, block, maxLife, life)
         {
             PlayerRace = playerRace;
             EquippedWeapon = equippedWeapon;
             Score = score;
+            RaceStrength = raceStrength;
+            RaceAgility = raceAgility;
+            RaceDefense = raceDefense;
+            RaceHealth = raceHealth;
         }
             
         
@@ -55,12 +62,79 @@ namespace DungeonApp.DungeonLibrary
     public override int CalcHitChance()
     {
         return HitChance + EquippedWeapon.BonusHitChance;
-        //You could also do 
-        //int chance = HitChance + EquippedWeapon.BonusHitChance;
-        //return chance;
-    }
-    //To get a random damage number, we use rand.Next
-}//CalcHitChance() override -> return the Hitchance + EquippedWeapon's BonusHitChance property.
+            //You could also do 
+            //int chance = HitChance + EquippedWeapon.BonusHitChance;
+            //return chance;
+        }
+        public void CalculateStats()
+        {
+            switch (PlayerRace)
+            {
+                case Race.Skeleton:
+                RaceStrength += -10;
+                RaceAgility += 15;
+                RaceDefense += 15;
+                RaceHealth += -20;
+                    break;
+                case Race.Necromancer:
+                RaceStrength += -15;
+                RaceAgility += 15;
+                RaceDefense += -15;
+                RaceHealth += 15;
+                    break;
+                case Race.Dragon:
+                RaceStrength += 20;
+                RaceAgility += -20;
+                RaceDefense += 15;
+                RaceHealth += 20;
+                    break;
+                case Race.Vampire:
+                RaceStrength += -10;
+                RaceAgility += 15;
+                RaceDefense += 15;
+                RaceHealth += -10;
+                    break;
+                case Race.Werewolf:
+                RaceStrength += 10;
+                RaceAgility  += -10;
+                RaceDefense += 10;
+                RaceHealth += 15;
+                    break;
+                default:
+                return;
+                break;
+            }
+
+
+           
+
+
+
+        }
+
+        public override string ToString()
+        {
+           string playerStats =
+                $"Player Name: {Name} \n" +
+                $"Player Race: {PlayerRace} \n" +
+                $"Equipped Weapon: {EquippedWeapon.Name} \n" +
+                $"Hit Chance: {HitChance} \n" +
+                $"Block: {Block} \n" +
+                $"Max Life: {MaxLife} \n" +
+                $"Life: {Life} \n" +
+                $"Race Health Bonus: {RaceHealth} \n" +
+                $"Race Strength Bonus: {RaceStrength} \n" +
+                $"Race Agility Bonus: {RaceAgility} \n" +
+                $"Race Defense Bonus: {RaceDefense} \n" ;
+            return playerStats;
+        }
+
+
+
+
+
+        //To get a random damage number, we use rand.Next
+    }//CalcHitChance() override -> return the Hitchance + EquippedWeapon's BonusHitChance property.
 
 }
    

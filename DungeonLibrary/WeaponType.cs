@@ -8,8 +8,9 @@ namespace DungeonApp
 {
     public enum WeaponType
     {   Unarmed,
-        Saw_Cleaver,
-        Wabbajack,
+        Rusty_Sword,
+        Wooden_Bow,
         Big_Bonk,
+        Flame_Staff
     }
 }

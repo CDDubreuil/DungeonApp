@@ -3,6 +3,7 @@ using DungeonLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Security;
@@ -10,6 +11,8 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using static System.Formats.Asn1.AsnWriter;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DungeonApp
 {
@@ -20,15 +23,17 @@ namespace DungeonApp
         static void Main(string[] args)
         {
 
-            Weapon w1 = new Weapon("Unarmed", 5, 15, 5, "No weapon equipped", WeaponType.Unarmed);
-            Weapon w2 = new Weapon("Saw Cleaver", 10, 20, 10, "A serrated cleaver", WeaponType.Saw_Cleaver);
-            Weapon w3 = new Weapon("Big Bonk", 15, 25, 10, "A heavy blunt weapon", WeaponType.Big_Bonk);
+            Weapon w1 = new Weapon("Unarmed", 5, 15, 5, "No weapon equipped",  WeaponType.Unarmed);
+            Weapon w2 = new Weapon("Rusty Sword", 10, 20, 10, "A rusty old sword", WeaponType.Rusty_Sword);
+            Weapon w3 = new Weapon("Big Bonk", 15, 30, 10, "A massive club", WeaponType.Big_Bonk);
+            Weapon w4 = new Weapon("Wooden Bow", 10, 20, 25, "A sleek bow",  WeaponType.Wooden_Bow);
+            Weapon w5 = new Weapon("Flame Staff", 15, 25, 20, "A sizzling staff",WeaponType.Flame_Staff);
             List<Weapon> weapons = new()
             {
-        w1, w2, w3
+        w1, w2, w3, w4, w5
             };
 
-            Player player = new Player(Race.None, null, 0, "", 50,50,50,50);
+            Player player = new Player(Race.None, null, 0, 10, 10, 10, 10, "", 50, 50, 120, 120);
             
             Console.WriteLine("You come upon a decrepit castle, crumbling after eras of disuse. Vines snake around the walls. Bone shards stand out\n starkly against the dark earth. " +
                 "You sigh with contentment. Home.\n");
@@ -48,7 +53,7 @@ namespace DungeonApp
 
             List<Race> race = new List<Race>()
             {
-                Race.Unicorn,
+               
                 Race.Skeleton,
                 Race.Necromancer,
                 Race.Dragon,
@@ -80,26 +85,34 @@ namespace DungeonApp
 
                     switch (race)
                     {
-                        case Race.Unicorn:
-                            return "\nIt's not all sunshine and rainbows anymore.";
                         case Race.Skeleton:
                             return "\nNot sure how they plan on killing you when you're already dead. ";
+                            break;
                         case Race.Necromancer:
                             return "\nYou've never met a corpse you didn't like. ";
+                            break;
                         case Race.Dragon:
                             return "\nHonestly if you really wanted to, you could just barbecue all these people who are lurking about.";
+                            break;
                         case Race.Vampire:
                             return "\nYou really hope none of these dungeon delvers are Italian. ";
+                            break;
                         case Race.Werewolf:
                             return "\nYou spent 6 hours brushing your hair this morning.";
+                            break;
                         default:
                             return "..";
+                            break;
                     }
 
 
                 }
 
+                player.CalculateStats();
+                player.MaxLife += player.RaceHealth;
+               
 
+                Console.WriteLine("You grab your weapon. It is a: \n");
 
                 for (int i = 0; i < weapons.Count; i++)
                 {
@@ -124,10 +137,14 @@ namespace DungeonApp
                         {
                             case WeaponType.Unarmed:
                                 return "You didn't bother grabbing any weapons";
-                            case WeaponType.Saw_Cleaver:
+                            case WeaponType.Rusty_Sword:
                                 return "This thing is covered in blood already. Gross";
+                            case WeaponType.Wooden_Bow:
+                                return "A simple and sleek bow";
                             case WeaponType.Big_Bonk:
                                 return "Unga bunga";
+                            case WeaponType.Flame_Staff:
+                                return "This spicy little staff used to do healing spells until you spilled a bottle of Sriracha on it";
                             default:
                                 return "Unknown weapon";
                         }
@@ -136,9 +153,9 @@ namespace DungeonApp
 
                     }
 
-
-                    Room entrance = new("The entrance to the dungeon awaits", 1, true, false, false, false);
-                    
+                    selectedWeapon.CalculateWeapon(player);
+                    Console.Clear();
+                    //Room entrance = new("The entrance to the dungeon awaits", 1, "entering the dungeon ldaholiehgag", true, false, false, false);
                     bool quit = false;
                     do
                     {
@@ -168,15 +185,24 @@ namespace DungeonApp
                                     int monsterHitChance = monster.CalcHitChance();
                             int playerDamage = player.CalcDamage();
                             int monsterDamage = monster.CalcDamage();
+                            playerHitChance += player.RaceAgility;
+                            playerDamage += player.RaceStrength;
+                          
+                            int trueMonsterDamage = monsterDamage -= player.RaceDefense;
+                            int truePlayerDamage = playerDamage += player.RaceStrength;
+                            int truePlayerHitChance = playerHitChance += player.RaceAgility;
+                            int trueMaxLife = player.MaxLife += player.RaceHealth;
+                            int trueLife = trueMaxLife -= trueMonsterDamage;
+
                             switch (action)
                             {
                                 case '1':
                                     Console.WriteLine("Attack!");
-                                    if (playerHitChance >= monsterHitChance)
+                                    if (truePlayerHitChance >= monsterHitChance)
                                     {
                                         //int playerDamage = player.CalcDamage();
-                                        monster.Life -= playerDamage;
-                                        player.Life -= monsterDamage;
+                                        monster.Life -= truePlayerDamage;
+                                        
                                     }
                                     if (monster.Life <= 0)
                                     {
@@ -186,15 +212,25 @@ namespace DungeonApp
                                     }
                                     else
                                     {
-                                    //int monsterDamage = monster.CalcDamage();
-                                        player.Life -= monsterDamage;
-                                        Console.WriteLine($"You hit the enemy for {playerDamage} damage!");
-                                        Console.WriteLine($"The enemy fights back and wounds you for {monsterDamage} damage!");
+                                        //int monsterDamage = monster.CalcDamage();
+                                        Console.WriteLine($"You hit the enemy for {truePlayerDamage} damage!");
+                                        Console.WriteLine($"The enemy fights back and wounds you for {trueMonsterDamage} damage!");
+                                        trueLife -= trueMonsterDamage;
                                     
                                     }
-                                    if (playerDamage == 0)
+                                    if (truePlayerDamage == 0)
                                     {
                                         Console.WriteLine("you missed the enemy!");
+                                    }
+
+                                    if (player.Life <= 0)
+                                    {
+                                        Console.WriteLine("You died.\a");
+                                        quit = true;
+                                    }
+                                    else
+                                    {
+                                        player.Life = trueLife;
                                     }
                                     break;
                                 case '2':
@@ -203,9 +239,9 @@ namespace DungeonApp
                                     break;
                                 case '3':
                                     Console.WriteLine("Player info: ");
-                                    Console.WriteLine(player);
-                                    Console.WriteLine($"Player Race: {player.PlayerRace}");
-                                    Console.WriteLine($"Equipped Weapon: {player.EquippedWeapon.Name}");
+                                    Console.WriteLine(player.ToString());
+                                    Console.WriteLine($"Weapon Damage: {selectedWeapon.MinDamage} - {selectedWeapon.MaxDamage}");
+                                    Console.WriteLine($"Weapon Bonus Hit Chance: {selectedWeapon.BonusHitChance} %");
                                     break;
 
                                 case '4':
@@ -247,13 +283,13 @@ namespace DungeonApp
              "You enter the library and see that these barbarians have scattered the books across the floor. Have they never been taught to reshelf things??",
              "Your beautiful dragon wife is sitting in the center of the cavernous room, fuming. There are piles of fresh humans strewn around her. You assure her that you will take care of the intruders, " +
              "more to comfort yourself than her. She can clearly handle the situation just fine. ",
-             "You don't know what the interlopers did, but when you go into your ritual space, there is an ominously glowing portal. You hesitate, then step through it. \n\nA room the likes of which you've never seen before appears before you. " +
-             "The lights are cold and flicker, despite having no visible flames. A thick, oily stench hangs in the air, and there is a chill that gnaws at your bones. Signs all over the room are" +
-             "covered in strange letters. You don't know what they mean, but see a string of symbols reoccuring across all of them. WAFFLE HOUSE. The few other beings here look haggard and worn, some seem hostile. You are surrounded by food and what appear to be cooking utensils. " +
-             "You grab one of these unknown tools for protection, along with what seems to be a strange flat bread with a gridlike pattern indented across the surface of it. You back away through your portal and immediately destroy the sigils surrounding that cursed doorway.",
+             "You hear voices echoing through the halls as soon as you enter. Some of your favorite cobwebs have been brushed away.",
+             "You exit the kitchen, and find yourself in a jarringly quaint and beautiful garden. Small, delicate fairies flit around. Your heart saddens as you realize the intruders have disturbed these sweet creatures.",
              "The astrology tower echoes with the sounds of clanging armor. Your richly embroidered tapestries depicting the constellations have been slashed. ",
-             "This room once housed your vast antique pottery collection. Some inconsiderate fool appears to have rolled through them all, smashing them all to shards. You are furious, as a good argillomancer is incredibly expensive to hire."
-            };
+             "This room once housed your vast antique pottery collection. Some inconsiderate fool appears to have rolled through them all, smashing them all to shards. You are furious, as a good argillomancer is incredibly expensive to hire.",
+             "You enter the large greenhouse. Instantly you can feel yourself struggle to breathe in the steamy heat. A small band of warriors had evidently come in here earlier, but were no match for the giant carnivorous plants you lovingly cultivate here.",
+              "The Courtyard is filled with tents and various sundry items. You spitefully cut loose the horses and scare them off before you are spotted."         
+                        };
 
                         Random rand = new Random();
                         //rooms.Length;

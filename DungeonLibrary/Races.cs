@@ -15,7 +15,6 @@ namespace DungeonApp.DungeonLibrary
     public enum Race
     {
         None,
-        Unicorn,
         Skeleton,
         Necromancer,
         Dragon,

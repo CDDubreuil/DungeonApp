@@ -18,7 +18,7 @@ namespace DungeonLibrary
         private int _maxDamage;
         private int _bonusHitChance;
         private string _description;
-
+  
         //Properties (public type PascalCase { get {} set {} }
         public string Name
         {
@@ -49,8 +49,7 @@ namespace DungeonLibrary
         }
         //auto props -> can only be used if you don't have business rules.
         //They don't require fields, so we can save a ton of space and time typing.
-
-
+      
         public WeaponType Type { get; set; }
         //CTORS
         public Weapon(string name, int minDamage, int maxDamage, int bonusHitChance, string description, WeaponType type)
@@ -77,31 +76,39 @@ namespace DungeonLibrary
                    $"{Description}";
         }
 
-    //           #region Weapon Bonus
-    //            switch (type)
-    //            {
-    //                case WeaponType.Unarmed:
-    //                    MinDamage += 5;
-    //                    MaxDamage += 10;
-    //                    BonusDamage += 10;
-    //                    BonusHitChance += 5;
-    //                    break;
-    //                case WeaponType.SawCleaver:
-    //                    MinDamage += 5;
-    //                    MaxDamage += 10;
-    //                    BonusDamage += 10;
-    //                    BonusHitChance += 10;
-    //                    break;
-    //                case WeaponType.BigBonk:
-    //                    MinDamage += 5;
-    //                    MaxDamage += 10;
-    //                    BonusDamage += 10;
-    //                    BonusHitChance += 10;
-    //                    break;
-    //                case default:
-    //            break; 
-    //            }
-    //#endregion Weapon Bonus
+        public void CalculateWeapon(Player player)
+        {
+            switch (Type)
+            {
+                case WeaponType.Unarmed:
+                    MinDamage += 5;
+                    MaxDamage += 10;
+                    BonusHitChance += 5;
+                    break;
+                case WeaponType.Rusty_Sword:
+                    MinDamage += 5;
+                    MaxDamage += 10;
+                    BonusHitChance += 10;
+                    break;
+                case WeaponType.Big_Bonk:
+                    MinDamage += 5;
+                    MaxDamage += 10;
+                    BonusHitChance += 10;
+                    break;
+                case WeaponType.Wooden_Bow:
+                    MinDamage += 5;
+                    MaxDamage += 10;
+                    BonusHitChance += 10;
+                    break;
+                case WeaponType.Flame_Staff:
+                    MinDamage += 5;
+                    MaxDamage += 10;
+                    BonusHitChance += 10;
+                    break;
+                default: return;
+                    break;
+            }
+        }
 }
 }
 
