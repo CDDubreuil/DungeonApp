@@ -52,18 +52,13 @@ namespace DungeonApp.DungeonLibrary
 
             public static Dwarf GetDwarf()
             {
+            Dwarf d1 = new Dwarf("Cheery Digger", 80, 20, 90, 90, 45, 25, "He won't. stop. whistling. ");
+            Dwarf d3 = new Dwarf("General Foreman", 65, 50, 170, 170, 50, 35, "A gruff old dwarf who is much stronger than his aged frame suggests. ");
+            Dwarf d4 = new Dwarf("Tiny Miner", 65, 80, 150, 150, 75, 60, "Just a tiny lil fella with a big ol' pickaxe.  ");
+            Dwarf d2 = new Dwarf("Bearded Lady", 50, 20, 220, 220, 55, 35, "A lady dwarf who has beautiful flowers braided into her long beard. ");
 
-                Dwarf d1 = new Dwarf("Lone Wanderer", 50, 20, 25, 8, 2, 5, "A wretched soul, moving aimlessly through the lands. ");
-                Dwarf d2 = new Dwarf("Cheery Digger", 70, 20, 25, 8, 2, 5, "He won't. stop. whistling. ");
-                Dwarf d3 = new Dwarf("General Foreman", 55, 20, 25, 8, 2, 5, "A gruff old dwarf who is much stronger than his aged frame suggests. ");
-                Dwarf d4 = new Dwarf("Tiny Miner", 65, 20, 25, 8, 2, 5, "Just a tiny lil fella with a big ol' pickaxe.  ");
-
-                List<Dwarf> dwarves = new()
-            { d1, d1,
-            d2, d2, d2, d2,
-            d3, d3, d3,
-            d4
-            };
+            List<Dwarf> dwarves = new()
+            { d1, d2, d3, d4};
 
                 return dwarves[new Random().Next(0, dwarves.Count)];
 

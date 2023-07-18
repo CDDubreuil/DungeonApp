@@ -22,6 +22,8 @@ namespace DungeonApp
 
         static void Main(string[] args)
         {
+            Console.Title = "Dungeon Defender";
+
 
             Weapon w1 = new Weapon("Unarmed", 5, 15, 5, "No weapon equipped",  WeaponType.Unarmed);
             Weapon w2 = new Weapon("Rusty Sword", 10, 20, 10, "A rusty old sword", WeaponType.Rusty_Sword);
@@ -37,19 +39,17 @@ namespace DungeonApp
             
             Console.WriteLine("You come upon a decrepit castle, crumbling after eras of disuse. Vines snake around the walls. Bone shards stand out\n starkly against the dark earth. " +
                 "You sigh with contentment. Home.\n");
-            // Thread.Sleep(6000);
-            // Console.Clear();
-            Console.WriteLine("You freeze. Voices. Inside the castle walls. You warily creep in and see that soldiers from the nearby kingdom have set up camp in your home. Furiously you prepare yourself.\n");
-            //  Thread.Sleep(6000);
-            // Console.Clear();
-            Console.WriteLine("Time to DEFEND YOUR DUNGEON.\n");
-            // Thread.Sleep(3000);
-            // Console.Clear();
+            Thread.Sleep(3000);
+            Console.Clear();
+            Console.WriteLine("You freeze. Voices echo joyously from nside the castle walls. You warily creep in and see that soldiers from the nearby kingdom have set up camp in your home. Furiously you prepare yourself.\n");
+            Thread.Sleep(3000);
+            Console.Clear();
+         
             Console.WriteLine("No man will over take your home, or else your name isn't....wait, what was your name again?\n");
             string characterName = Console.ReadLine();
             player.Name = characterName;
             Console.Clear();
-            Console.WriteLine("\nWhat manner of creature are you?\n");
+            Console.WriteLine("\nWhat kind of creature are you?\n");
 
             List<Race> race = new List<Race>()
             {
@@ -79,7 +79,7 @@ namespace DungeonApp
                 player.PlayerRace = selectedRace;
                 Console.WriteLine($"Selected race: {selectedRace}");
                 string raceDesc = GetRaceDesc(selectedRace);
-                Console.WriteLine($"Description: {raceDesc}");
+                Console.WriteLine($"{raceDesc}");
                 static string GetRaceDesc(Race race)
                 {
 
@@ -110,9 +110,9 @@ namespace DungeonApp
 
                 player.CalculateStats();
                 player.MaxLife += player.RaceHealth;
-               
+                Console.Clear();
 
-                Console.WriteLine("You grab your weapon. It is a: \n");
+                Console.WriteLine("Hissing furiously, you grab your weapon. It is a: \n");
 
                 for (int i = 0; i < weapons.Count; i++)
                 {
@@ -155,7 +155,7 @@ namespace DungeonApp
 
                     selectedWeapon.CalculateWeapon(player);
                     Console.Clear();
-                    //Room entrance = new("The entrance to the dungeon awaits", 1, "entering the dungeon ldaholiehgag", true, false, false, false);
+                  
                     bool quit = false;
                     do
                     {
@@ -181,18 +181,18 @@ namespace DungeonApp
 
                             char action = Console.ReadKey(true).KeyChar;
                             Console.Clear();
-                                    int playerHitChance = player.CalcHitChance();
-                                    int monsterHitChance = monster.CalcHitChance();
+                            int playerHitChance = player.CalcHitChance();
+                            int monsterHitChance = monster.CalcHitChance();
                             int playerDamage = player.CalcDamage();
                             int monsterDamage = monster.CalcDamage();
                             playerHitChance += player.RaceAgility;
                             playerDamage += player.RaceStrength;
                           
-                            int trueMonsterDamage = monsterDamage -= player.RaceDefense;
-                            int truePlayerDamage = playerDamage += player.RaceStrength;
-                            int truePlayerHitChance = playerHitChance += player.RaceAgility;
-                            int trueMaxLife = player.MaxLife += player.RaceHealth;
-                            int trueLife = trueMaxLife -= trueMonsterDamage;
+                            int trueMonsterDamage = Math.Max(monsterDamage - player.RaceDefense, 0);
+                            int truePlayerDamage = playerDamage + player.RaceStrength;
+                            int truePlayerHitChance = playerHitChance + player.RaceAgility;
+                          
+                            int trueLife = player.Life + player.RaceHealth;
 
                             switch (action)
                             {
@@ -212,11 +212,11 @@ namespace DungeonApp
                                     }
                                     else
                                     {
-                                        //int monsterDamage = monster.CalcDamage();
+                                      
                                         Console.WriteLine($"You hit the enemy for {truePlayerDamage} damage!");
+                                        player.Life -= trueMonsterDamage;
                                         Console.WriteLine($"The enemy fights back and wounds you for {trueMonsterDamage} damage!");
-                                        trueLife -= trueMonsterDamage;
-                                    
+                                       
                                     }
                                     if (truePlayerDamage == 0)
                                     {
@@ -228,10 +228,8 @@ namespace DungeonApp
                                         Console.WriteLine("You died.\a");
                                         quit = true;
                                     }
-                                    else
-                                    {
-                                        player.Life = trueLife;
-                                    }
+                                   
+                                  
                                     break;
                                 case '2':
                                     Console.WriteLine("Run Away!!");
@@ -258,11 +256,7 @@ namespace DungeonApp
                                     Console.WriteLine("Do you think this is a game?? Quit playing around!");
                                     break;
                             }
-                            if (player.Life <= 0)
-                            {
-                                Console.WriteLine("Dude... You died!\a");
-                                quit = true;
-                            }
+                     
 
                         } while (!reload && !quit);
 
@@ -284,9 +278,9 @@ namespace DungeonApp
              "Your beautiful dragon wife is sitting in the center of the cavernous room, fuming. There are piles of fresh humans strewn around her. You assure her that you will take care of the intruders, " +
              "more to comfort yourself than her. She can clearly handle the situation just fine. ",
              "You hear voices echoing through the halls as soon as you enter. Some of your favorite cobwebs have been brushed away.",
-             "You exit the kitchen, and find yourself in a jarringly quaint and beautiful garden. Small, delicate fairies flit around. Your heart saddens as you realize the intruders have disturbed these sweet creatures.",
-             "The astrology tower echoes with the sounds of clanging armor. Your richly embroidered tapestries depicting the constellations have been slashed. ",
-             "This room once housed your vast antique pottery collection. Some inconsiderate fool appears to have rolled through them all, smashing them all to shards. You are furious, as a good argillomancer is incredibly expensive to hire.",
+             "You exit the kitchen, and find yourself in a jarringly quaint and beautiful garden. Small, delicate fairies flit around. Your heart saddens as you realize the intruders have disturbed them. They are too sour to eat now. ",
+             "The astrology tower echoes with the sounds of clanging armor. Your richly embroidered tapestries depicting the constellations have been slashed. Your ritual to summon your patron to destroy the kingdom nearby has been disrupted. You're gonna be in a lot of trouble later.",
+             "This room once housed your vast antique pottery collection. Some inconsiderate fool appears to have rolled through them all, smashing them all to shards. You are furious, it took you decades to steal all that pottery.",
              "You enter the large greenhouse. Instantly you can feel yourself struggle to breathe in the steamy heat. A small band of warriors had evidently come in here earlier, but were no match for the giant carnivorous plants you lovingly cultivate here.",
               "The Courtyard is filled with tents and various sundry items. You spitefully cut loose the horses and scare them off before you are spotted."         
                         };

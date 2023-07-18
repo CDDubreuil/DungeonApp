@@ -53,16 +53,13 @@ namespace DungeonApp.DungeonLibrary
         public static Elf GetElf()
         {
 
-            Elf e1 = new Elf("Woodsy Ranger", 50, 20, 100, 35, 15, 5, "This elf smells like patchouli . ");
-            Elf e2 = new Elf("Sharp-Eyed Archer", 70, 40, 600, 60, 30, 10, "You barely see this elf, who was camping in the shadows, hoping to snipe you. ");
-            Elf e3 = new Elf("Crafty Artificer", 55, 350, 75, 75, 40, 15, "An elf is tinkering with some magical contraption it has built to explore your ruins.");
-            Elf e4 = new Elf("Wise Archmage", 65, 60, 125, 125, 50, 25, "Powerful spells swirl around this ancient elf, who radiates an incredible energy.");
+            Elf e1 = new Elf("Woodsy Ranger", 80, 30, 135, 135, 45, 25, "This elf smells like patchouli . ");
+            Elf e2 = new Elf("Sharp-Eyed Archer", 70, 70, 160, 160, 50, 20, "You barely see this elf, who was camping in the shadows, hoping to snipe you. ");
+            Elf e3 = new Elf("Crafty Artificer", 65, 50, 175, 175, 45, 35, "An elf is tinkering with some magical contraption it has built to explore your ruins.");
+            Elf e4 = new Elf("Wise Archmage", 75, 60, 225, 225, 55, 45, "Powerful spells swirl around this ancient elf, who radiates an incredible energy.");
 
             List<Elf> elves = new()
-            { e1, e1,
-            e2, e2, e2, e2,
-            e3, e3, e3,
-            e4
+            { e1, e2, e3, e4
             };
 
             return elves[new Random().Next(0, elves.Count)];
