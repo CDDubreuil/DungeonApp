@@ -60,10 +60,7 @@ namespace DungeonApp.DungeonLibrary
             }
             else
             {
-    
-
                 player.Score++;
-
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"\nYou killed {monster.Name}!");
                 Console.ResetColor();

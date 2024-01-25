@@ -38,17 +38,18 @@ namespace DungeonApp.DungeonLibrary
             Description = description;
         }
       
-        public override string ToString()
-        {
-            return $"{base.ToString()}\n" +
-                $"Damage: {MinDamage} = {MaxDamage}\n" +
-                $"Description: {Description}";
-        }
         public override int CalcDamage()
         {
            int damage = new Random().Next(MinDamage, MaxDamage + 1);
             Life -= damage;
             return new Random().Next(MinDamage, MaxDamage + 1); 
+        }
+        public override string ToString()
+        {
+            int damage = CalcDamage();
+            return $"{base.ToString()}\n" +
+                $"Damage: {damage}\n" +
+                $"Description: {Description}";
         }
         
 

@@ -43,7 +43,7 @@ namespace DungeonApp.DungeonLibrary
         RoomExitEast = roomExitEast;
 
         }
-        //Room courtyard = new Room("The Courtyard", 1, "The Courtyard is filled with tents and various sundry items. You spitefully cut loose the horses and scare them off before you are spotted.", false, true, false, false);
+        //Room courtyard = new Room("The Courtyard", 1, "The Courtyard is filled with tents and various camping supplies. You spitefully cut loose the horses and scare them off before you are spotted.", false, true, false, false);
         //Room entranceHall = new Room("The Entrance Hall", 2, "You hear voices echoing through the halls as soon as you enter. Some of your favorite cobwebs have been brushed away. \n To the east is the Great Hall. To the south is the library. West leads to an armory.", true, true, true, true);
         //Room greatHall = new Room("The Great Hall", 3, "This once was the room where a great king dined with his companions and guests. Now it's where you toss spare bodies when you run out of space in the crypt", false, true, true, false);
         //Room fairyGarden = new Room("The Fairy Garden", 4, "You exit the kitchen, and find yourself in a jarringly quaint and beautiful garden. Small, delicate fairies flit around. Your heart saddens as you realize the intruders have disturbed these sweet creatures.", false, false, false, true);
@@ -55,7 +55,7 @@ namespace DungeonApp.DungeonLibrary
         //Room alchemyLab = new Room("The Alchemy Lab, 10, "You shriek with rage when you see that someone not only emptied out the griffin wing stew you make, but they also scrubbed the pot out. That was an ancient cast iron cauldron that had been seasoned for several centuries, now ruined by some pathetic do-gooder.", )
         //Room kitchen = new Room("The Kitchen", 11, "Some ruffian is digging through your cabinets. They see you and immediately brandish one of your carving knives, declaring that you are an enemy of the king who must be vanquished.", )
         //Room dungeonDungeon = new Room("Into the Depths of the Dungeon", 12, "In the deepest depths of your castle is a vast cavern. It is filled with the sound of water dripping on the dirt and stone floor. Bones and moss cover the ground. "
-        //Room potteryDisplay = new Room("The Pottery Collection", 14, "This room once housed your vast antique pottery collection. Some inconsiderate fool appears to have rolled through them all, smashing them all to shards. You are furious, it took you decades to steal all that pottery.", )
+        //Room potteryDisplay = new Room("The Pottery Collection", 13, "This room once housed your vast antique pottery collection. Some inconsiderate fool appears to have rolled through them all, smashing them all to shards. You are furious, it took you decades to steal all that pottery.", )
       
     }
 }
